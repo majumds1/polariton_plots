@@ -6,7 +6,8 @@ import os
 file = open('path_log')
 path = file.readlines()
 n = len(path)                 # No. of trajectories
-l = 736                       # n_frames
+#l = 736                       # n_frames
+l = int(np.loadtxt('n_steps'))
 file.close()
 
 

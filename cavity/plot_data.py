@@ -5,8 +5,9 @@ import os
 # Load path to trajectories
 file = open('path_log')
 path = file.readlines()
-n = len(path)                 # No. of trajectories
-l = 736                       # n_frames
+n = len(path)                          # No. of trajectories
+#l=736
+l = int(np.loadtxt('n_steps'))         # n_frames
 file.close()
 
 
@@ -37,10 +38,10 @@ for i in range(0,n):
         data = np.loadtxt(os.path.join(path[i].strip(),f'norm23.dat'))
         Norm_23[i,:] = data[0:l]
         p_data = np.loadtxt(os.path.join(path[i].strip(),f'p.dat'))
-        P0[i,:] = p_data[:,2]
-        P1[i,:] = p_data[:,3] 
-        P2[i,:] = p_data[:,4]
-        P3[i,:] = p_data[:,5]
+        P0[i,:] = p_data[:,2][0:l]
+        P1[i,:] = p_data[:,3][0:l]
+        P2[i,:] = p_data[:,4][0:l]
+        P3[i,:] = p_data[:,5][0:l]
         print(p_data.shape) 
 
 # Time array

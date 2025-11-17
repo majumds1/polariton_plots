@@ -17,18 +17,29 @@ n,l=P1.shape
 P1_total = np.zeros(l)
 P2_total = np.zeros(l)
 P3_total = np.zeros(l)
+P1_std = np.zeros(l)
+P2_std = np.zeros(l)
+P3_std = np.zeros(l)
 for j in range(0,l):
      P1_total[j] = np.sum(P1[:,j])/n
      P2_total[j] = np.sum(P2[:,j])/n
      P3_total[j] = np.sum(P3[:,j])/n
+     P1_std[j] = np.std(P1[:, j])
+     P2_std[j] = np.std(P2[:, j])
+     P3_std[j] = np.std(P3[:, j])
+
 
 
 #Plot
 plt.title('Population Analysis')
-plt.plot(t,P1_total,'r',label="S1")
-plt.plot(t,P2_total,'g',label="S2")
-plt.plot(t,P3_total,'k',label="S3")
+plt.plot(t,P1_total,'r',label=r"$S_{1}$")
+plt.fill_between(t, P1_total - P1_std, P1_total + P1_std, color='r', alpha=0.15)
+plt.plot(t,P2_total,'g',label=r"$S_2$")
+plt.fill_between(t, P2_total - P2_std, P2_total + P2_std, color='g', alpha=0.15)
+plt.plot(t,P3_total,'k',label=r"$S_3$")
+plt.fill_between(t, P3_total - P3_std, P3_total + P3_std, color='k', alpha=0.15)
 plt.xlabel('Time (fs)')
 plt.ylabel('Population')
+plt.ylim(-0.1,1.1)
 plt.legend()
 plt.savefig('population.png', dpi=400, bbox_inches='tight')

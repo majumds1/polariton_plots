@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 
 # No. of atoms 
-n_atoms = 10
+n_atoms = int(np.loadtxt('n_atoms'))
 
 
 # Load trajectory NAC data
